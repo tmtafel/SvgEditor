@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="d-flex justify-content-between w-100 align-items-center">
+    <a class="navbar-brand" href="#">SVG Editor</a>
+    <div class="position-relative ml-3">
+      <input (change)="onFileChange($event)"type="file" class="custom-file-input" id="fileUpload">
+      <label class="custom-file-label" for="fileUpload">
+        <span *ngIf="!fileName">Choose file</span>
+        <span *ngIf="fileName"><strong>{{fileName}}</strong> ({{fileSize}} bytes)</span>
+      </label>
+    </div>
+  </div>
+</nav>
