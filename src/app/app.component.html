@@ -1,3 +1,7 @@
 <app-layout (change)="onFileChange($event)">
-  <app-svg fileText="{{fileText}}"></app-svg>
+  <div class="container" *ngIf="svg">
+    <div class="row">
+      <svg *ngFor="let child of svg.children"></svg>
+    </div>
+  </div>
 </app-layout>

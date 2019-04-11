@@ -1,44 +1,30 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, AfterContentInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-svg',
-  templateUrl: './svg.component.html',
-  styleUrls: ['./svg.component.css']
+  template: `
+  <svg *ngIf="parsed">
+  </svg>
+  `
 })
-export class SvgComponent implements OnChanges {
-  @Input() fileText: string;
-  children: Array<SvgComponent>;
-  inner: string;
+export class SvgComponent implements AfterContentInit {
+  @Input() parsed: any;
+  tagName: string;
+  attributes: any;
+  hasChildren: boolean;
+  children: any[];
 
-  constructor() {
+  constructor(svgParsed: any) {
+    this.parsed = svgParsed;
   }
 
-  ngOnChanges() {
-    this.inner = $(this.fileText).html();
+  ngAfterContentInit() {
+    this.tagName = this.parsed.name;
+    this.attributes = this.parsed.attributes;
+    this.hasChildren = this.parsed.children.length > 0;
+    this.children = this.parsed.children;
     console.log(this);
   }
 
-  getChildren(item: any) {
-    if (typeof (item.children) !== 'undefined') {
-      if (item.children.length > 0) {
-        console.log(this);
-        return item.children;
-      }
-    }
-    return null;
-  }
 
-  getChildrenRecursive(item: any) {
-    const children = this.getChildren(item);
-    if (children) {
-      for (let i = 0; i < item.children.length; i++) {
-        const child = item.children[i];
-        const childComponent = new SvgComponent();
-        childComponent.fileText = this.inner;
-        this.children.push(childComponent);
-        this.getChildrenRecursive(child);
-      }
-    }
-  }
 }

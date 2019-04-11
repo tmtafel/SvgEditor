@@ -3,22 +3,22 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { SvgComponent } from './svg/svg.component';
 import { UiModule } from './ui/ui.module';
-import { SanitizeHtmlPipe } from './sanitize-html.pipe';
-import { GroupComponent } from './group/group.component';
+import { SanitizeHtmlPipe } from './shared/sanitize-html/sanitize-html.pipe';
+import { VboxDirective } from './shared/vbox/vbox.directive';
+import { SvgModule } from './svg/svg.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SvgComponent,
     SanitizeHtmlPipe,
-    GroupComponent
+    VboxDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    UiModule
+    UiModule,
+    SvgModule
   ],
   providers: [],
   bootstrap: [AppComponent]

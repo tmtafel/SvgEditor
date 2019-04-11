@@ -6,17 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  loaded = false;
   fileName: string;
-  fileSize: number;
 
   constructor() { }
 
   onFileChange(event) {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
-      this.fileName = file.name;
-      this.fileSize = parseInt(file.size, 0);
+      if (file.type === 'image/svg+xml') {
+        this.fileName = file.name;
+      } else {
+        event.target.files = null;
+      }
     }
   }
 }

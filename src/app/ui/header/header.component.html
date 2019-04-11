@@ -5,7 +5,7 @@
       <input (change)="onFileChange($event)"type="file" class="custom-file-input" id="fileUpload">
       <label class="custom-file-label" for="fileUpload">
         <span *ngIf="!fileName">Choose file</span>
-        <span *ngIf="fileName"><strong>{{fileName}}</strong> ({{fileSize}} bytes)</span>
+        <span *ngIf="fileName">{{fileName}}</span>
       </label>
     </div>
   </div>
